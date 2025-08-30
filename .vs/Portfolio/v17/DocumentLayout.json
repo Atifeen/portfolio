@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|e:\\portfolio\\portfolio\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
       "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
     },
     {
@@ -60,7 +60,7 @@
               "RelativeDocumentMoniker": "Portfolio\\.gitignore",
               "ToolTip": "E:\\Portfolio\\Portfolio\\.gitignore",
               "RelativeToolTip": "Portfolio\\.gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-08-30T10:10:49.659Z",
               "EditorCaption": ""
@@ -99,8 +99,7 @@
               "RelativeToolTip": "Portfolio\\Admin\\Dashboard.aspx.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAALABAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-29T20:35:18.156Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T20:35:18.156Z"
             },
             {
               "$type": "Document",
@@ -112,8 +111,7 @@
               "RelativeToolTip": "Portfolio\\Admin\\Dashboard.aspx",
               "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-08-29T20:34:35.202Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-29T20:34:35.202Z"
             },
             {
               "$type": "Document",

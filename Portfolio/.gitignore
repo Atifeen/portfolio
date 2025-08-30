@@ -1,3 +1,7 @@
-﻿# Ignore Visual Studio temporary files
+﻿## Ignore Visual Studio cache and build folders
 .vs/
+bin/
+obj/
+Debug/
+Release/
 *.vsidx
