@@ -5,3 +5,5 @@ obj/
 Debug/
 Release/
 *.vsidx
+
+.vs/Portfolio
