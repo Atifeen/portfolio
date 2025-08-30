@@ -1,0 +1,184 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Portfolio\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|e:\\portfolio\\portfolio\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|e:\\portfolio\\portfolio\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\admin\\dashboard.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\admin\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\admin\\dashboard.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\admin\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\admin\\login.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\admin\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\admin\\login.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\admin\\login.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\admin\\login.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\styles\\admin-login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\styles\\admin-login.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\styles\\admin-dashboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\styles\\admin-dashboard.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\helpers\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\helpers\\dbhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|E:\\Portfolio\\portfolio\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{8FB89097-7EE2-4A8A-8404-D6F4396BE532}|Portfolio\\Portfolio.csproj|solutionrelative:portfolio\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\.gitignore",
+              "RelativeDocumentMoniker": "Portfolio\\.gitignore",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\.gitignore",
+              "RelativeToolTip": "Portfolio\\.gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-08-30T10:10:49.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "admin-dashboard.css",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Styles\\admin-dashboard.css",
+              "RelativeDocumentMoniker": "Portfolio\\Styles\\admin-dashboard.css",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Styles\\admin-dashboard.css",
+              "RelativeToolTip": "Portfolio\\Styles\\admin-dashboard.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8BAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-08-29T20:45:42.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "admin-login.css",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Styles\\admin-login.css",
+              "RelativeDocumentMoniker": "Portfolio\\Styles\\admin-login.css",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Styles\\admin-login.css",
+              "RelativeToolTip": "Portfolio\\Styles\\admin-login.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAG0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-08-29T20:44:13.06Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.aspx.cs",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Admin\\Dashboard.aspx.cs",
+              "RelativeDocumentMoniker": "Portfolio\\Admin\\Dashboard.aspx.cs",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Admin\\Dashboard.aspx.cs",
+              "RelativeToolTip": "Portfolio\\Admin\\Dashboard.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAALABAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T20:35:18.156Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.aspx",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Admin\\Dashboard.aspx",
+              "RelativeDocumentMoniker": "Portfolio\\Admin\\Dashboard.aspx",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Admin\\Dashboard.aspx",
+              "RelativeToolTip": "Portfolio\\Admin\\Dashboard.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-08-29T20:34:35.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Login.aspx.designer.cs",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Admin\\Login.aspx.designer.cs",
+              "RelativeDocumentMoniker": "Portfolio\\Admin\\Login.aspx.designer.cs",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Admin\\Login.aspx.designer.cs",
+              "RelativeToolTip": "Portfolio\\Admin\\Login.aspx.designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T20:10:35.98Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Login.aspx.cs",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Admin\\Login.aspx.cs",
+              "RelativeDocumentMoniker": "Portfolio\\Admin\\Login.aspx.cs",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Admin\\Login.aspx.cs",
+              "RelativeToolTip": "Portfolio\\Admin\\Login.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T20:07:58.224Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DBHelper.cs",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Helpers\\DBHelper.cs",
+              "RelativeDocumentMoniker": "Portfolio\\Helpers\\DBHelper.cs",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Helpers\\DBHelper.cs",
+              "RelativeToolTip": "Portfolio\\Helpers\\DBHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAN8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T20:08:50.854Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Web.config",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Web.config",
+              "RelativeDocumentMoniker": "Portfolio\\Web.config",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Web.config",
+              "RelativeToolTip": "Portfolio\\Web.config",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAwDEAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-08-29T20:06:07.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Login.aspx",
+              "DocumentMoniker": "E:\\Portfolio\\Portfolio\\Admin\\Login.aspx",
+              "RelativeDocumentMoniker": "Portfolio\\Admin\\Login.aspx",
+              "ToolTip": "E:\\Portfolio\\Portfolio\\Admin\\Login.aspx",
+              "RelativeToolTip": "Portfolio\\Admin\\Login.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-08-29T20:05:58.444Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
