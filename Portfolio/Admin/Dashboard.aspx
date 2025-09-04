@@ -64,11 +64,18 @@
                         <asp:BoundField DataField="Description" HeaderText="Description" />
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
-                                <asp:LinkButton runat="server" CssClass="action-btn edit-btn" 
-                                    CommandName="EditSkill" CommandArgument='<%# Eval("id") %>' Text="Edit" />
-                                <asp:LinkButton runat="server" CssClass="action-btn delete-btn" 
-                                    CommandName="DeleteSkill" CommandArgument='<%# Eval("id") %>' Text="Delete"
-                                    OnClientClick="return confirm('Are you sure you want to delete this skill?');" />
+                                <div class="action-container" data-id='<%# Eval("id") %>' 
+                                     data-name='<%# Server.HtmlEncode(Eval("SkillName").ToString()) %>'
+                                     data-proficiency='<%# Server.HtmlEncode(Eval("Proficiency").ToString()) %>'
+                                     data-description='<%# Server.HtmlEncode(Eval("Description").ToString()) %>'>
+                                    <button type="button" class="action-btn view-btn" 
+                                        onclick="viewSkill(this)">View</button>
+                                    <button type="button" class="action-btn edit-btn" 
+                                        onclick="editSkill(this)">Edit</button>
+                                    <asp:LinkButton runat="server" CssClass="action-btn delete-btn" 
+                                        CommandName="DeleteSkill" CommandArgument='<%# Eval("id") %>' Text="Delete"
+                                        OnClientClick="return confirm('Are you sure you want to delete this skill?');" />
+                                </div>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -90,19 +97,54 @@
                         <asp:BoundField DataField="short_description" HeaderText="Description" />
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
-                                <asp:LinkButton runat="server" CssClass="action-btn view-btn" 
-                                    CommandName="ViewProject" CommandArgument='<%# Eval("id") %>' Text="View" />
-                                <asp:LinkButton runat="server" CssClass="action-btn edit-btn" 
-                                    CommandName="EditProject" CommandArgument='<%# Eval("id") %>' Text="Edit" />
-                                <asp:LinkButton runat="server" CssClass="action-btn delete-btn" 
-                                    CommandName="DeleteProject" CommandArgument='<%# Eval("id") %>' Text="Delete"
-                                    OnClientClick="return confirm('Are you sure you want to delete this project?');" />
+                                <div class="action-container" data-id='<%# Eval("id") %>' 
+                                     data-title='<%# Server.HtmlEncode(Eval("title").ToString()) %>'
+                                     data-technologies='<%# Server.HtmlEncode(Eval("technologies").ToString()) %>'
+                                     data-description='<%# Server.HtmlEncode(Eval("short_description").ToString()) %>'
+                                     data-imagepath='<%# Server.HtmlEncode(Eval("image_path").ToString()) %>'
+                                     data-websiteurl='<%# Server.HtmlEncode(Eval("website_url").ToString()) %>'
+                                     data-githuburl='<%# Server.HtmlEncode(Eval("github_url").ToString()) %>'>
+                                    <button type="button" class="action-btn view-btn" 
+                                        onclick="viewProject(this)">View</button>
+                                    <button type="button" class="action-btn edit-btn" 
+                                        onclick="editProject(this)">Edit</button>
+                                    <asp:LinkButton runat="server" CssClass="action-btn delete-btn" 
+                                        CommandName="DeleteProject" CommandArgument='<%# Eval("id") %>' Text="Delete"
+                                        OnClientClick="return confirm('Are you sure you want to delete this project?');" />
+                                </div>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
             </div>
 
+        </div>
+
+        <!-- View Skill Modal -->
+        <div id="viewSkillModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('viewSkillModal')">&times;</span>
+                <h2>Skill Details</h2>
+                
+                <div class="form-group">
+                    <label>Skill Name</label>
+                    <div class="form-display" id="viewSkillName"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Proficiency Level</label>
+                    <div class="form-display" id="viewProficiency"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description</label>
+                    <div class="form-display" id="viewSkillDescription"></div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="button" class="action-btn" onclick="closeModal('viewSkillModal')">Close</button>
+                </div>
+            </div>
         </div>
 
         <!-- Add/Edit Skill Modal -->
@@ -138,6 +180,48 @@
                 <div class="form-group">
                     <asp:Button ID="btnSaveSkill" runat="server" CssClass="add-btn" Text="Save Skill" OnClick="btnSaveSkill_Click" />
                     <button type="button" class="action-btn" onclick="closeModal('skillModal')">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View Project Modal -->
+        <div id="viewProjectModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('viewProjectModal')">&times;</span>
+                <h2>Project Details</h2>
+                
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <div class="form-display" id="viewTitle"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Technologies Used</label>
+                    <div class="form-display" id="viewTechnologies"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Description</label>
+                    <div class="form-display" id="viewDescription"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Image Path</label>
+                    <div class="form-display" id="viewImagePath"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Website URL</label>
+                    <div class="form-display" id="viewWebsiteUrl"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>GitHub URL</label>
+                    <div class="form-display" id="viewGithubUrl"></div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="button" class="action-btn" onclick="closeModal('viewProjectModal')">Close</button>
                 </div>
             </div>
         </div>
@@ -192,107 +276,11 @@
             </div>
         </div>
 
-        <!-- ✅ Hidden field must be INSIDE form -->
+        <!-- Hidden field for tab persistence -->
         <asp:HiddenField ID="hfActiveTab" runat="server" Value="skills" />
 
     </form>
 
-    <script>
-        // Tab Navigation
-        function showSection(sectionName, element) {
-            // Hide all sections
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Remove active class from all tabs
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            // Show selected section
-            document.getElementById(sectionName + '-section').classList.add('active');
-
-            // Add active class to clicked tab
-            if (element) {
-                element.classList.add('active');
-            }
-
-            // Store active tab in hidden field
-            var activeTabControl = document.getElementById('<%= hfActiveTab.ClientID %>');
-            if (activeTabControl) {
-                activeTabControl.value = sectionName;
-            }
-        }
-
-        // Page load - restore active tab
-        window.onload = function () {
-            var activeTabControl = document.getElementById('<%= hfActiveTab.ClientID %>');
-            if (activeTabControl) {
-                var activeTab = activeTabControl.value;
-                if (activeTab) {
-                    showSectionOnLoad(activeTab);
-                }
-            }
-        }
-
-        function showSectionOnLoad(sectionName) {
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.querySelectorAll('.nav-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-
-            document.getElementById(sectionName + '-section').classList.add('active');
-            var tabs = document.querySelectorAll('.nav-tab');
-            if (sectionName === 'skills') {
-                tabs[0].classList.add('active');
-            } else if (sectionName === 'projects') {
-                tabs[1].classList.add('active');
-            }
-        }
-
-        // Modal Functions
-        function showAddSkillModal() {
-            document.getElementById('skillModalTitle').textContent = 'Add New Skill';
-            document.getElementById('<%= hfSkillId.ClientID %>').value = '0';
-            clearSkillForm();
-            document.getElementById('skillModal').style.display = 'block';
-        }
-
-        function showAddProjectModal() {
-            document.getElementById('projectModalTitle').textContent = 'Add New Project';
-            document.getElementById('<%= hfProjectId.ClientID %>').value = '0';
-            clearProjectForm();
-            document.getElementById('projectModal').style.display = 'block';
-        }
-
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        function clearSkillForm() {
-            document.getElementById('<%= txtSkillName.ClientID %>').value = '';
-            document.getElementById('<%= ddlProficiency.ClientID %>').value = '';
-            document.getElementById('<%= txtSkillDescription.ClientID %>').value = '';
-        }
-
-        function clearProjectForm() {
-            document.getElementById('<%= txtProjectTitle.ClientID %>').value = '';
-            document.getElementById('<%= txtTechnologies.ClientID %>').value = '';
-            document.getElementById('<%= txtProjectDescription.ClientID %>').value = '';
-            document.getElementById('<%= txtImagePath.ClientID %>').value = '';
-            document.getElementById('<%= txtWebsiteUrl.ClientID %>').value = '';
-            document.getElementById('<%= txtGithubUrl.ClientID %>').value = '';
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function (event) {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = 'none';
-            }
-        }
-    </script>
+    <script src="../Scripts/dashboard.js"></script>
 </body>
 </html>

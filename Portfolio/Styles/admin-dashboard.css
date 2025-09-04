@@ -164,10 +164,11 @@ body {
         background: #5a6fd8;
     }
 
-/* Tables */
+/* Tables - Fixed Column Widths */
 .data-table {
     width: 100%;
     border-collapse: collapse;
+    table-layout: fixed; /* Enables fixed column widths */
 }
 
     .data-table th,
@@ -175,17 +176,70 @@ body {
         padding: 1rem;
         text-align: left;
         border-bottom: 1px solid #eee;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .data-table th {
         background: #f8f9ff;
         font-weight: 600;
         color: #333;
+        white-space: nowrap;
     }
 
     .data-table tr:hover {
         background: #f8f9ff;
     }
+
+/* Skills Table Column Widths */
+#gvSkills th:nth-child(1), #gvSkills td:nth-child(1) {
+    width: 25%;
+}
+/* Skill Name */
+#gvSkills th:nth-child(2), #gvSkills td:nth-child(2) {
+    width: 15%;
+}
+/* Proficiency */
+#gvSkills th:nth-child(3), #gvSkills td:nth-child(3) {
+    width: 35%;
+}
+/* Description */
+#gvSkills th:nth-child(4), #gvSkills td:nth-child(4) {
+    width: 25%;
+}
+/* Actions */
+
+/* Projects Table Column Widths */
+#gvProjects th:nth-child(1), #gvProjects td:nth-child(1) {
+    width: 25%;
+}
+/* Title */
+#gvProjects th:nth-child(2), #gvProjects td:nth-child(2) {
+    width: 20%;
+}
+/* Technologies */
+#gvProjects th:nth-child(3), #gvProjects td:nth-child(3) {
+    width: 35%;
+}
+/* Description */
+#gvProjects th:nth-child(4), #gvProjects td:nth-child(4) {
+    width: 20%;
+}
+/* Actions */
+
+/* Truncate long text in description cells */
+.data-table td:nth-child(3) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Action Container */
+.action-container {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
 
 /* Action Buttons */
 .action-btn {
@@ -194,9 +248,9 @@ body {
     border-radius: 3px;
     cursor: pointer;
     font-size: 0.8rem;
-    margin-right: 5px;
     text-decoration: none;
     display: inline-block;
+    transition: all 0.3s;
 }
 
 .edit-btn {
@@ -204,15 +258,27 @@ body {
     color: white;
 }
 
+    .edit-btn:hover {
+        background: #218838;
+    }
+
 .delete-btn {
     background: #dc3545;
     color: white;
 }
 
+    .delete-btn:hover {
+        background: #c82333;
+    }
+
 .view-btn {
     background: #007bff;
     color: white;
 }
+
+    .view-btn:hover {
+        background: #0069d9;
+    }
 
 /* Modal Styles */
 .modal {
@@ -234,6 +300,8 @@ body {
     width: 90%;
     max-width: 600px;
     position: relative;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .close {
@@ -243,7 +311,12 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: #999;
+    transition: color 0.3s;
 }
+
+    .close:hover {
+        color: #333;
+    }
 
 .form-group {
     margin-bottom: 1rem;
@@ -261,6 +334,7 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
     .form-control:focus {
@@ -272,6 +346,16 @@ body {
 textarea.form-control {
     resize: vertical;
     min-height: 80px;
+}
+
+/* Form Display for View Modals */
+.form-display {
+    padding: 0.75rem;
+    border: 1px solid #e9ecef;
+    border-radius: 5px;
+    background-color: #f8f9fa;
+    min-height: 45px;
+    word-wrap: break-word;
 }
 
 /* Message Styles */
@@ -298,6 +382,7 @@ textarea.form-control {
 @media (max-width: 768px) {
     .container {
         padding: 0 0.5rem;
+        margin: 1rem auto;
     }
 
     .header-content {
@@ -314,6 +399,60 @@ textarea.form-control {
     }
 
     .data-table {
-        font-size: 0.9rem;
+        font-size: 0.85rem;
+    }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem 0.5rem;
+        }
+
+    /* Adjust column widths for mobile */
+    #gvSkills th:nth-child(1), #gvSkills td:nth-child(1) {
+        width: 30%;
+    }
+
+    #gvSkills th:nth-child(2), #gvSkills td:nth-child(2) {
+        width: 20%;
+    }
+
+    #gvSkills th:nth-child(3), #gvSkills td:nth-child(3) {
+        width: 25%;
+    }
+
+    #gvSkills th:nth-child(4), #gvSkills td:nth-child(4) {
+        width: 25%;
+    }
+
+    #gvProjects th:nth-child(1), #gvProjects td:nth-child(1) {
+        width: 30%;
+    }
+
+    #gvProjects th:nth-child(2), #gvProjects td:nth-child(2) {
+        width: 25%;
+    }
+
+    #gvProjects th:nth-child(3), #gvProjects td:nth-child(3) {
+        width: 25%;
+    }
+
+    #gvProjects th:nth-child(4), #gvProjects td:nth-child(4) {
+        width: 20%;
+    }
+
+    .action-container {
+        flex-direction: column;
+        gap: 3px;
+    }
+
+    .action-btn {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 2% auto;
+        padding: 1.5rem;
     }
 }

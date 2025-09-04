@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -105,14 +106,11 @@ namespace Portfolio.Admin
 
             try
             {
-                if (e.CommandName == "EditSkill")
-                {
-                    EditSkill(skillId);
-                }
-                else if (e.CommandName == "DeleteSkill")
+                if (e.CommandName == "DeleteSkill")
                 {
                     DeleteSkill(skillId);
                 }
+                // Note: ViewSkill and EditSkill are now handled client-side
             }
             catch (Exception ex)
             {
@@ -130,18 +128,11 @@ namespace Portfolio.Admin
 
             try
             {
-                if (e.CommandName == "EditProject")
-                {
-                    EditProject(projectId);
-                }
-                else if (e.CommandName == "DeleteProject")
+                if (e.CommandName == "DeleteProject")
                 {
                     DeleteProject(projectId);
                 }
-                else if (e.CommandName == "ViewProject")
-                {
-                    ViewProject(projectId);
-                }
+                // Note: ViewProject and EditProject are now handled client-side
             }
             catch (Exception ex)
             {
@@ -150,34 +141,6 @@ namespace Portfolio.Admin
         }
 
         // Skill Operations
-        private void EditSkill(int skillId)
-        {
-            try
-            {
-                DataTable dt = DBHelper.GetSkillById(skillId);
-                if (dt.Rows.Count > 0)
-                {
-                    DataRow row = dt.Rows[0];
-
-                    hfSkillId.Value = skillId.ToString();
-                    txtSkillName.Text = row["SkillName"].ToString();
-                    ddlProficiency.SelectedValue = row["Proficiency"].ToString();
-                    txtSkillDescription.Text = row["Description"].ToString();
-
-                    // Show modal via JavaScript
-                    string script = @"
-                        document.getElementById('skillModalTitle').textContent = 'Edit Skill';
-                        document.getElementById('skillModal').style.display = 'block';
-                    ";
-                    ClientScript.RegisterStartupScript(this.GetType(), "EditSkill", script, true);
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowMessage("Error loading skill data: " + ex.Message, false);
-            }
-        }
-
         private void DeleteSkill(int skillId)
         {
             try
@@ -264,37 +227,6 @@ namespace Portfolio.Admin
         }
 
         // Project Operations
-        private void EditProject(int projectId)
-        {
-            try
-            {
-                DataTable dt = DBHelper.GetProjectById(projectId);
-                if (dt.Rows.Count > 0)
-                {
-                    DataRow row = dt.Rows[0];
-
-                    hfProjectId.Value = projectId.ToString();
-                    txtProjectTitle.Text = row["title"].ToString();
-                    txtTechnologies.Text = row["technologies"].ToString();
-                    txtProjectDescription.Text = row["short_description"].ToString();
-                    txtImagePath.Text = row["image_path"].ToString();
-                    txtWebsiteUrl.Text = row["website_url"].ToString();
-                    txtGithubUrl.Text = row["github_url"].ToString();
-
-                    // Show modal via JavaScript
-                    string script = @"
-                        document.getElementById('projectModalTitle').textContent = 'Edit Project';
-                        document.getElementById('projectModal').style.display = 'block';
-                    ";
-                    ClientScript.RegisterStartupScript(this.GetType(), "EditProject", script, true);
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowMessage("Error loading project data: " + ex.Message, false);
-            }
-        }
-
         private void DeleteProject(int projectId)
         {
             try
@@ -314,38 +246,6 @@ namespace Portfolio.Admin
             catch (Exception ex)
             {
                 ShowMessage("Error deleting project: " + ex.Message, false);
-            }
-        }
-
-        private void ViewProject(int projectId)
-        {
-            try
-            {
-                DataTable dt = DBHelper.GetProjectById(projectId);
-                if (dt.Rows.Count > 0)
-                {
-                    DataRow row = dt.Rows[0];
-
-                    // Populate form in read-only mode for viewing
-                    hfProjectId.Value = projectId.ToString();
-                    txtProjectTitle.Text = row["title"].ToString();
-                    txtTechnologies.Text = row["technologies"].ToString();
-                    txtProjectDescription.Text = row["short_description"].ToString();
-                    txtImagePath.Text = row["image_path"].ToString();
-                    txtWebsiteUrl.Text = row["website_url"].ToString();
-                    txtGithubUrl.Text = row["github_url"].ToString();
-
-                    // Show modal via JavaScript (could be enhanced to show read-only view)
-                    string script = @"
-                        document.getElementById('projectModalTitle').textContent = 'View Project Details';
-                        document.getElementById('projectModal').style.display = 'block';
-                    ";
-                    ClientScript.RegisterStartupScript(this.GetType(), "ViewProject", script, true);
-                }
-            }
-            catch (Exception ex)
-            {
-                ShowMessage("Error loading project data: " + ex.Message, false);
             }
         }
 
