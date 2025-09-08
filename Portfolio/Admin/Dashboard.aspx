@@ -41,12 +41,27 @@
                     <div class="stat-number"><asp:Label ID="lblProjectsCount" runat="server">0</asp:Label></div>
                     <div class="stat-label">Total Projects</div>
                 </div>
+                <div class="stat-card">
+                    <div class="stat-number">
+                        <asp:Label ID="lblMessagesCount" runat="server">0</asp:Label>
+                        <span class="unread-badge" id="unreadBadge" runat="server" visible="false">
+                            <asp:Label ID="lblUnreadCount" runat="server"></asp:Label>
+                        </span>
+                    </div>
+                    <div class="stat-label">Contact Messages</div>
+                </div>
             </div>
 
             <!-- Navigation Tabs -->
             <div class="nav-tabs">
                 <button type="button" class="nav-tab active" onclick="showSection('skills', this)">Manage Skills</button>
                 <button type="button" class="nav-tab" onclick="showSection('projects', this)">Manage Projects</button>
+                <button type="button" class="nav-tab" onclick="showSection('messages', this)">
+                    Contact Messages
+                    <span class="tab-badge" id="tabBadge" runat="server" visible="false">
+                        <asp:Label ID="lblTabUnreadCount" runat="server"></asp:Label>
+                    </span>
+                </button>
             </div>
 
             <!-- Skills Section -->
@@ -111,6 +126,52 @@
                                     <asp:LinkButton runat="server" CssClass="action-btn delete-btn" 
                                         CommandName="DeleteProject" CommandArgument='<%# Eval("id") %>' Text="Delete"
                                         OnClientClick="return confirm('Are you sure you want to delete this project?');" />
+                                </div>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>
+            </div>
+
+            <!-- Contact Messages Section -->
+            <div id="messages-section" class="content-section">
+                <div class="section-header">
+                    <h2>Contact Messages</h2>
+                    <div class="message-filters">
+                        <asp:Button ID="btnShowAll" runat="server" CssClass="filter-btn active" 
+                            Text="All Messages" OnClick="btnShowAll_Click" />
+                        <asp:Button ID="btnShowUnread" runat="server" CssClass="filter-btn" 
+                            Text="Unread Only" OnClick="btnShowUnread_Click" />
+                    </div>
+                </div>
+                
+                <asp:GridView ID="gvMessages" runat="server" CssClass="data-table" AutoGenerateColumns="false" 
+                    OnRowCommand="gvMessages_RowCommand" DataKeyNames="Id">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Status">
+                            <ItemTemplate>
+                                <span class='<%# Convert.ToBoolean(Eval("IsRead")) ? "status-read" : "status-unread" %>'>
+                                    <%# Convert.ToBoolean(Eval("IsRead")) ? "Read" : "New" %>
+                                </span>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:BoundField DataField="Name" HeaderText="From" />
+                        <asp:BoundField DataField="Subject" HeaderText="Subject" />
+                        <asp:BoundField DataField="CreatedDate" HeaderText="Date" DataFormatString="{0:MMM dd, yyyy HH:mm}" />
+                        <asp:TemplateField HeaderText="Actions">
+                            <ItemTemplate>
+                                <div class="action-container" data-id='<%# Eval("Id") %>' 
+                                     data-name='<%# Server.HtmlEncode(Eval("Name").ToString()) %>'
+                                     data-email='<%# Server.HtmlEncode(Eval("Email").ToString()) %>'
+                                     data-subject='<%# Server.HtmlEncode(Eval("Subject").ToString()) %>'
+                                     data-message='<%# Server.HtmlEncode(Eval("Message").ToString()) %>'
+                                     data-date='<%# Eval("CreatedDate", "{0:MMM dd, yyyy HH:mm}") %>'
+                                     data-isread='<%# Eval("IsRead") %>'>
+                                    <button type="button" class="action-btn view-btn" 
+                                        onclick="viewMessage(this)">View</button>
+                                    <asp:LinkButton runat="server" CssClass="action-btn delete-btn" 
+                                        CommandName="DeleteMessage" CommandArgument='<%# Eval("Id") %>' Text="Delete"
+                                        OnClientClick="return confirm('Are you sure you want to delete this message?');" />
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -276,6 +337,44 @@
             </div>
         </div>
 
+        <!-- View Message Modal -->
+        <div id="viewMessageModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('viewMessageModal')">&times;</span>
+                <h2>Contact Message Details</h2>
+                
+                <div class="form-group">
+                    <label>From</label>
+                    <div class="form-display" id="viewMessageName"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Email</label>
+                    <div class="form-display" id="viewMessageEmail"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Subject</label>
+                    <div class="form-display" id="viewMessageSubject"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Date</label>
+                    <div class="form-display" id="viewMessageDate"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Message</label>
+                    <div class="form-display message-content" id="viewMessageContent"></div>
+                </div>
+                
+                <div class="form-group">
+                    <button type="button" class="action-btn" onclick="closeModal('viewMessageModal')">Close</button>
+                    <a id="replyEmailLink" href="#" class="add-btn" target="_blank">Reply via Email</a>
+                </div>
+            </div>
+        </div>
+
         <!-- Hidden field for tab persistence -->
         <asp:HiddenField ID="hfActiveTab" runat="server" Value="skills" />
 
@@ -284,3 +383,4 @@
     <script src="../Scripts/dashboard.js"></script>
 </body>
 </html>
+

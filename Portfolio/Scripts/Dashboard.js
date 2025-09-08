@@ -96,6 +96,8 @@ function showSectionOnLoad(sectionName) {
         tabs[0].classList.add('active');
     } else if (sectionName === 'projects') {
         tabs[1].classList.add('active');
+    } else if (sectionName === 'messages') {
+        tabs[2].classList.add('active');
     }
 }
 
@@ -231,6 +233,102 @@ function editProject(button) {
     // Set modal title and show
     document.getElementById('projectModalTitle').textContent = 'Edit Project';
     document.getElementById('projectModal').style.display = 'block';
+}
+
+// Contact Message Operations - Client Side
+function viewMessage(button) {
+    const actionContainer = button.closest('.action-container');
+
+    // Get data from data attributes
+    const messageId = actionContainer.getAttribute('data-id');
+    const name = actionContainer.getAttribute('data-name') || 'N/A';
+    const email = actionContainer.getAttribute('data-email') || 'N/A';
+    const subject = actionContainer.getAttribute('data-subject') || 'N/A';
+    const message = actionContainer.getAttribute('data-message') || 'No message content';
+    const date = actionContainer.getAttribute('data-date') || 'N/A';
+    const isRead = actionContainer.getAttribute('data-isread') === 'True';
+
+    // Populate view modal
+    document.getElementById('viewMessageName').textContent = name;
+    document.getElementById('viewMessageEmail').textContent = email;
+    document.getElementById('viewMessageSubject').textContent = subject;
+    document.getElementById('viewMessageDate').textContent = date;
+    document.getElementById('viewMessageContent').textContent = message;
+
+    // Set up reply email link
+    const replyLink = document.getElementById('replyEmailLink');
+    const replySubject = encodeURIComponent('Re: ' + subject);
+    const replyBody = encodeURIComponent('\n\n--- Original Message ---\nFrom: ' + name + '\nDate: ' + date + '\nSubject: ' + subject + '\n\n' + message);
+    replyLink.href = `mailto:${email}?subject=${replySubject}&body=${replyBody}`;
+
+    // Mark message as read if it's unread
+    if (!isRead) {
+        markMessageAsRead(messageId);
+    }
+
+    // Show view modal
+    document.getElementById('viewMessageModal').style.display = 'block';
+}
+
+// Mark message as read using AJAX call (no page refresh)
+function markMessageAsRead(messageId) {
+    fetch('Dashboard.aspx/MarkMessageAsRead', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ messageId: parseInt(messageId) })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.d) {
+                // Update the UI to show message as read
+                updateMessageStatusUI(messageId);
+                // Update unread badges
+                updateUnreadBadges();
+            }
+        })
+        .catch(error => {
+            console.log('Error marking message as read:', error);
+            // Continue showing modal even if marking as read fails
+        });
+}
+
+// Update UI to show message as read
+function updateMessageStatusUI(messageId) {
+    const actionContainer = document.querySelector(`[data-id="${messageId}"]`);
+    if (actionContainer) {
+        // Update the status span in the row
+        const statusSpan = actionContainer.closest('tr').querySelector('.status-unread, .status-read');
+        if (statusSpan && statusSpan.classList.contains('status-unread')) {
+            statusSpan.className = 'status-read';
+            statusSpan.textContent = 'Read';
+        }
+        // Update data attribute
+        actionContainer.setAttribute('data-isread', 'True');
+    }
+}
+
+// Update unread count badges
+function updateUnreadBadges() {
+    // Get current unread count from UI
+    const statusElements = document.querySelectorAll('.status-unread');
+    const unreadCount = statusElements.length - 1; // Subtract 1 because we just marked one as read
+
+    const unreadBadge = document.getElementById('unreadBadge');
+    const tabBadge = document.getElementById('tabBadge');
+    const lblUnreadCount = document.querySelector('[id*="lblUnreadCount"]');
+    const lblTabUnreadCount = document.querySelector('[id*="lblTabUnreadCount"]');
+
+    if (unreadCount > 0) {
+        if (unreadBadge) unreadBadge.style.display = 'inline';
+        if (tabBadge) tabBadge.style.display = 'inline';
+        if (lblUnreadCount) lblUnreadCount.textContent = unreadCount;
+        if (lblTabUnreadCount) lblTabUnreadCount.textContent = unreadCount;
+    } else {
+        if (unreadBadge) unreadBadge.style.display = 'none';
+        if (tabBadge) tabBadge.style.display = 'none';
+    }
 }
 
 // Close modal when clicking outside

@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -45,6 +44,7 @@ namespace Portfolio.Admin
                 // Load data grids
                 LoadSkillsGrid();
                 LoadProjectsGrid();
+                LoadMessagesGrid();
 
                 // Hide message panel
                 pnlMessage.Visible = false;
@@ -61,6 +61,26 @@ namespace Portfolio.Admin
             {
                 lblSkillsCount.Text = DBHelper.GetSkillsCount().ToString();
                 lblProjectsCount.Text = DBHelper.GetProjectsCount().ToString();
+                
+                // Load contact messages stats
+                int totalMessages = DBHelper.GetContactMessagesCount();
+                int unreadCount = DBHelper.GetUnreadMessagesCount();
+                
+                lblMessagesCount.Text = totalMessages.ToString();
+                
+                // Show unread badges if there are unread messages
+                if (unreadCount > 0)
+                {
+                    unreadBadge.Visible = true;
+                    tabBadge.Visible = true;
+                    lblUnreadCount.Text = unreadCount.ToString();
+                    lblTabUnreadCount.Text = unreadCount.ToString();
+                }
+                else
+                {
+                    unreadBadge.Visible = false;
+                    tabBadge.Visible = false;
+                }
             }
             catch (Exception ex)
             {
@@ -93,6 +113,42 @@ namespace Portfolio.Admin
             catch (Exception ex)
             {
                 ShowMessage("Error loading projects: " + ex.Message, false);
+            }
+        }
+
+        private void LoadMessagesGrid()
+        {
+            try
+            {
+                DataTable dt = DBHelper.GetAllContactMessages();
+                gvMessages.DataSource = dt;
+                gvMessages.DataBind();
+                
+                // Set filter button states
+                btnShowAll.CssClass = "filter-btn active";
+                btnShowUnread.CssClass = "filter-btn";
+            }
+            catch (Exception ex)
+            {
+                ShowMessage("Error loading messages: " + ex.Message, false);
+            }
+        }
+
+        private void LoadUnreadMessagesGrid()
+        {
+            try
+            {
+                DataTable dt = DBHelper.GetUnreadMessages();
+                gvMessages.DataSource = dt;
+                gvMessages.DataBind();
+                
+                // Set filter button states
+                btnShowAll.CssClass = "filter-btn";
+                btnShowUnread.CssClass = "filter-btn active";
+            }
+            catch (Exception ex)
+            {
+                ShowMessage("Error loading unread messages: " + ex.Message, false);
             }
         }
 
@@ -138,6 +194,41 @@ namespace Portfolio.Admin
             {
                 ShowMessage("Error: " + ex.Message, false);
             }
+        }
+
+        // Messages GridView Events
+        protected void gvMessages_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            int messageId = Convert.ToInt32(e.CommandArgument);
+
+            // Set active tab to messages when performing message operations
+            hfActiveTab.Value = "messages";
+
+            try
+            {
+                if (e.CommandName == "DeleteMessage")
+                {
+                    DeleteMessage(messageId);
+                }
+                // Note: ViewMessage is handled client-side but marks as read
+            }
+            catch (Exception ex)
+            {
+                ShowMessage("Error: " + ex.Message, false);
+            }
+        }
+
+        // Message Filter Events
+        protected void btnShowAll_Click(object sender, EventArgs e)
+        {
+            hfActiveTab.Value = "messages";
+            LoadMessagesGrid();
+        }
+
+        protected void btnShowUnread_Click(object sender, EventArgs e)
+        {
+            hfActiveTab.Value = "messages";
+            LoadUnreadMessagesGrid();
         }
 
         // Skill Operations
@@ -312,6 +403,43 @@ namespace Portfolio.Admin
             catch (Exception ex)
             {
                 ShowMessage("Error saving project: " + ex.Message, false);
+            }
+        }
+
+        // Message Operations
+        private void DeleteMessage(int messageId)
+        {
+            try
+            {
+                bool success = DBHelper.DeleteContactMessage(messageId);
+                if (success)
+                {
+                    ShowMessage("Message deleted successfully!", true);
+                    LoadMessagesGrid();
+                    LoadStats();
+                }
+                else
+                {
+                    ShowMessage("Failed to delete message.", false);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage("Error deleting message: " + ex.Message, false);
+            }
+        }
+
+        // Web Method for AJAX calls to mark message as read
+        [System.Web.Services.WebMethod]
+        public static bool MarkMessageAsRead(int messageId)
+        {
+            try
+            {
+                return DBHelper.MarkMessageAsRead(messageId);
+            }
+            catch
+            {
+                return false;
             }
         }
 

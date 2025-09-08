@@ -35,7 +35,9 @@ function setupSmoothScrolling() {
 
                 // Close mobile menu if open
                 const navMenu = document.querySelector('.nav-menu');
-                navMenu.classList.remove('active');
+                if (navMenu) {
+                    navMenu.classList.remove('active');
+                }
             }
         });
     });
@@ -135,27 +137,22 @@ function setupNavbarScroll() {
     window.addEventListener('scroll', function () {
         const navbar = document.querySelector('.navbar');
 
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
         }
     });
 }
 
-// Form validation
-function validateContactForm() {
-    const name = document.querySelector('[id*="txtContactName"]').value.trim();
-    const email = document.querySelector('[id*="txtContactEmail"]').value.trim();
-    const subject = document.querySelector('[id*="txtContactSubject"]').value.trim();
-    const message = document.querySelector('[id*="txtContactMessage"]').value.trim();
-
-    if (!name || !email || !subject || !message) {
-        return false;
+// Shortcut: Alt + A → Admin dashboard
+document.addEventListener('keydown', (event) => {
+    if (event.altKey && event.key === 'a') {
+        event.preventDefault();
+        window.location.href = 'https://localhost:44362/Admin/Dashboard';
     }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
+});

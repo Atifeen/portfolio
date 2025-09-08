@@ -1,6 +1,10 @@
-﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Portfolio.Default" %>
+﻿
+
+<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Portfolio.Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+
+    <script src ="Scripts/portfolio.js"></script>
 
     <!-- Home Section -->
     <section id="home" class="hero-section">
@@ -90,24 +94,7 @@
             <div class="section-header">
                 <h2 class="section-title">My Skills</h2>
             </div>
-            <div class="skills-container">
-                <div class="skill-category">
-                    <h3>Frameworks</h3>
-                    <asp:Repeater ID="rptFrameworkSkills" runat="server">
-                        <ItemTemplate>
-                            <div class="skill-item">
-                                <div class="skill-header">
-                                    <span class="skill-name"><%# Eval("SkillName") %></span>
-                                    <span class="skill-percentage"><%# GetProficiencyPercentage(Eval("Proficiency").ToString()) %>%</span>
-                                </div>
-                                <div class="skill-progress">
-                                    <div class="progress-fill" data-level="<%# GetProficiencyPercentage(Eval("Proficiency").ToString()) %>"></div>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
-                
+           
                 <div class="skill-category">
                     <h3>Languages</h3>
                     <asp:Repeater ID="rptLanguageSkills" runat="server">

@@ -15,6 +15,7 @@ namespace Portfolio
             }
         }
 
+        #region Portfolio Data Loading
         private void LoadPortfolioData()
         {
             try
@@ -30,21 +31,13 @@ namespace Portfolio
                 {
                     string skillName = row["SkillName"].ToString().ToLower();
 
-                    // Categorize skills based on name
                     if (IsFrameworkSkill(skillName))
-                    {
                         frameworkSkills.ImportRow(row);
-                    }
                     else
-                    {
                         languageSkills.ImportRow(row);
-                    }
                 }
 
-                // Bind to repeaters
-                rptFrameworkSkills.DataSource = frameworkSkills;
-                rptFrameworkSkills.DataBind();
-
+                // Bind language/framework skills to repeaters
                 rptLanguageSkills.DataSource = languageSkills;
                 rptLanguageSkills.DataBind();
 
@@ -59,7 +52,6 @@ namespace Portfolio
             }
         }
 
-        // Helper method to categorize skills
         private bool IsFrameworkSkill(string skillName)
         {
             string[] frameworks = {
@@ -71,32 +63,23 @@ namespace Portfolio
             foreach (string framework in frameworks)
             {
                 if (skillName.Contains(framework))
-                {
                     return true;
-                }
             }
             return false;
         }
 
-        // Helper method to convert proficiency level to percentage
         public int GetProficiencyPercentage(string proficiency)
         {
             switch (proficiency.ToLower())
             {
-                case "beginner":
-                    return 25;
-                case "intermediate":
-                    return 50;
-                case "advanced":
-                    return 75;
-                case "expert":
-                    return 90;
-                default:
-                    return 0;
+                case "beginner": return 25;
+                case "intermediate": return 50;
+                case "advanced": return 75;
+                case "expert": return 90;
+                default: return 0;
             }
         }
 
-        // Helper method to format technologies as badges
         public string FormatTechnologies(string technologies)
         {
             if (string.IsNullOrEmpty(technologies))
@@ -116,10 +99,14 @@ namespace Portfolio
 
             return result;
         }
+        #endregion
 
-        // Contact form submission
+        #region Contact Form
         protected void btnSendMessage_Click(object sender, EventArgs e)
         {
+            Response.Write("<script>alert('btnSendMessage_Click fired!');</script>");
+            Response.Flush();
+
             try
             {
                 string name = txtContactName.Text.Trim();
@@ -127,7 +114,7 @@ namespace Portfolio
                 string subject = txtContactSubject.Text.Trim();
                 string message = txtContactMessage.Text.Trim();
 
-                // Basic validation
+                // Validation
                 if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) ||
                     string.IsNullOrEmpty(subject) || string.IsNullOrEmpty(message))
                 {
@@ -135,22 +122,24 @@ namespace Portfolio
                     return;
                 }
 
-                // Email validation
                 if (!IsValidEmail(email))
                 {
                     ShowContactMessage("Please enter a valid email address.", false);
                     return;
                 }
 
-                // TODO: Implement email sending logic here
-                // For now, we'll just show a success message
-                // In a real application, you would:
-                // 1. Save to database
-                // 2. Send email notification
-                // 3. Use SMTP to send emails
+                // Save message to DB
+                bool success = DBHelper.AddContactMessage(name, email, subject, message);
 
-                ShowContactMessage("Thank you for your message! I'll get back to you soon.", true);
-                ClearContactForm();
+                if (success)
+                {
+                    ShowContactMessage("Thank you for your message! I'll get back to you soon.", true);
+                    ClearContactForm();
+                }
+                else
+                {
+                    ShowContactMessage("Sorry, there was an error sending your message. Please try again.", false);
+                }
             }
             catch (Exception ex)
             {
@@ -175,17 +164,11 @@ namespace Portfolio
         {
             pnlContactMessage.Visible = true;
             lblContactMessage.Text = message;
+            lblContactMessage.CssClass = isSuccess
+                ? "contact-message success"
+                : "contact-message error";
 
-            if (isSuccess)
-            {
-                lblContactMessage.CssClass = "contact-message success";
-            }
-            else
-            {
-                lblContactMessage.CssClass = "contact-message error";
-            }
-
-            // Scroll to contact section to show message
+            // Scroll to contact section
             string script = @"
                 setTimeout(function() {
                     document.querySelector('#contact').scrollIntoView({ 
@@ -194,7 +177,7 @@ namespace Portfolio
                     });
                 }, 100);
             ";
-            ClientScript.RegisterStartupScript(this.GetType(), "ScrollToContact", script, true);
+            ScriptManager.RegisterStartupScript(this, GetType(), "ScrollToContact", script, true);
         }
 
         private void ClearContactForm()
@@ -204,5 +187,6 @@ namespace Portfolio
             txtContactSubject.Text = "";
             txtContactMessage.Text = "";
         }
+        #endregion
     }
 }

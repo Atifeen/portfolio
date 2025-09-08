@@ -205,6 +205,94 @@ namespace Portfolio.Helpers
             return ExecuteReader(query, parameters);
         }
 
+        // ==================== CONTACT MESSAGES MANAGEMENT ====================
+
+        // Get all contact messages (newest first)
+        public static DataTable GetAllContactMessages()
+        {
+            string query = "SELECT * FROM [dbo].[ContactMessages] ORDER BY CreatedDate DESC";
+            try
+            {
+                DataTable result = ExecuteReader(query);
+                System.Diagnostics.Debug.WriteLine($"GetAllContactMessages: Retrieved {result.Rows.Count} messages");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error in GetAllContactMessages: {ex.Message}");
+                throw;
+            }
+        }
+
+        // Get contact message by ID
+        public static DataTable GetContactMessageById(int id)
+        {
+            string query = "SELECT * FROM ContactMessages WHERE Id = @id";
+            SqlParameter[] parameters = { new SqlParameter("@id", id) };
+            return ExecuteReader(query, parameters);
+        }
+
+        // Add new contact message
+        public static bool AddContactMessage(string name, string email, string subject, string message)
+        {
+            string query = @"INSERT INTO [dbo].[ContactMessages] (Name, Email, Subject, Message, IsRead, CreatedDate) 
+                    VALUES (@name, @email, @subject, @message, 0, GETDATE())";
+
+            SqlParameter[] parameters = {
+        new SqlParameter("@name", string.IsNullOrEmpty(name) ? (object)DBNull.Value : name),
+        new SqlParameter("@email", string.IsNullOrEmpty(email) ? (object)DBNull.Value : email),
+        new SqlParameter("@subject", string.IsNullOrEmpty(subject) ? (object)DBNull.Value : subject),
+        new SqlParameter("@message", string.IsNullOrEmpty(message) ? (object)DBNull.Value : message)
+    };
+
+            try
+            {
+                System.Diagnostics.Debug.WriteLine("=== ATTEMPTING TO INSERT CONTACT MESSAGE ===");
+                System.Diagnostics.Debug.WriteLine($"Parameters - Name: '{name}', Email: '{email}', Subject: '{subject}'");
+
+                int rowsAffected = ExecuteNonQuery(query, parameters);
+
+                System.Diagnostics.Debug.WriteLine($"Rows affected: {rowsAffected}");
+
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"ERROR in AddContactMessage: {ex.Message}");
+                throw;
+            }
+        }
+
+        // Mark message as read
+        public static bool MarkMessageAsRead(int id)
+        {
+            string query = "UPDATE ContactMessages SET IsRead = 1 WHERE Id = @id";
+            SqlParameter[] parameters = { new SqlParameter("@id", id) };
+            return ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // Delete contact message
+        public static bool DeleteContactMessage(int id)
+        {
+            string query = "DELETE FROM ContactMessages WHERE Id = @id";
+            SqlParameter[] parameters = { new SqlParameter("@id", id) };
+            return ExecuteNonQuery(query, parameters) > 0;
+        }
+
+        // Get unread messages count
+        public static int GetUnreadMessagesCount()
+        {
+            string query = "SELECT COUNT(*) FROM ContactMessages WHERE IsRead = 0";
+            return Convert.ToInt32(ExecuteScalar(query));
+        }
+
+        // Get unread messages only
+        public static DataTable GetUnreadMessages()
+        {
+            string query = "SELECT * FROM ContactMessages WHERE IsRead = 0 ORDER BY CreatedDate DESC";
+            return ExecuteReader(query);
+        }
+
         // ==================== UTILITY METHODS ====================
 
         // Get total count of skills
@@ -218,6 +306,13 @@ namespace Portfolio.Helpers
         public static int GetProjectsCount()
         {
             string query = "SELECT COUNT(*) FROM projects";
+            return Convert.ToInt32(ExecuteScalar(query));
+        }
+
+        // Get total count of contact messages
+        public static int GetContactMessagesCount()
+        {
+            string query = "SELECT COUNT(*) FROM ContactMessages";
             return Convert.ToInt32(ExecuteScalar(query));
         }
     }
