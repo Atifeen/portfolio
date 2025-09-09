@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Portfolio.Helpers;
+using System;
 using System.Data;
+using System.Runtime.InteropServices.ComTypes;
 using System.Web.UI;
-using Portfolio.Helpers;
 
 namespace Portfolio
 {
@@ -41,6 +42,10 @@ namespace Portfolio
                 rptLanguageSkills.DataSource = languageSkills;
                 rptLanguageSkills.DataBind();
 
+                // Bind framework skills to repeater (this was missing!)
+                rptFrameworkSkills.DataSource = frameworkSkills;
+                rptFrameworkSkills.DataBind();
+
                 // Load Projects
                 DataTable projectsData = DBHelper.GetAllProjects();
                 rptProjects.DataSource = projectsData;
@@ -70,14 +75,7 @@ namespace Portfolio
 
         public int GetProficiencyPercentage(string proficiency)
         {
-            switch (proficiency.ToLower())
-            {
-                case "beginner": return 25;
-                case "intermediate": return 50;
-                case "advanced": return 75;
-                case "expert": return 90;
-                default: return 0;
-            }
+            return int.Parse(proficiency);
         }
 
         public string FormatTechnologies(string technologies)
@@ -104,9 +102,6 @@ namespace Portfolio
         #region Contact Form
         protected void btnSendMessage_Click(object sender, EventArgs e)
         {
-            Response.Write("<script>alert('btnSendMessage_Click fired!');</script>");
-            Response.Flush();
-
             try
             {
                 string name = txtContactName.Text.Trim();
@@ -133,7 +128,7 @@ namespace Portfolio
 
                 if (success)
                 {
-                    ShowContactMessage("Thank you for your message! I'll get back to you soon.", true);
+                    ShowContactMessage("Thank you for your message!", true);
                     ClearContactForm();
                 }
                 else
@@ -168,7 +163,7 @@ namespace Portfolio
                 ? "contact-message success"
                 : "contact-message error";
 
-            // Scroll to contact section
+            // Scroll to contact section and fade out success message after 3 seconds
             string script = @"
                 setTimeout(function() {
                     document.querySelector('#contact').scrollIntoView({ 
@@ -176,7 +171,23 @@ namespace Portfolio
                         block: 'start' 
                     });
                 }, 100);
+        
+                // Fade out success message after 3 seconds
+                " + (isSuccess ? @"
+                setTimeout(function() {
+                    var messagePanel = document.getElementById('" + pnlContactMessage.ClientID + @"');
+                    if (messagePanel) {
+                        messagePanel.style.transition = 'opacity 0.5s ease-out';
+                        messagePanel.style.opacity = '0';
+                
+                        // Completely hide after fade completes
+                        setTimeout(function() {
+                            messagePanel.style.display = 'none';
+                        }, 500);
+                    }
+                }, 3000);" : "") + @"
             ";
+
             ScriptManager.RegisterStartupScript(this, GetType(), "ScrollToContact", script, true);
         }
 

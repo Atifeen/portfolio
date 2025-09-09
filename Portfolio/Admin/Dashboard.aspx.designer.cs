@@ -78,42 +78,6 @@ namespace Portfolio.Admin
         protected global::System.Web.UI.WebControls.Label lblMessagesCount;
 
         /// <summary>
-        /// unreadBadge control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl unreadBadge;
-
-        /// <summary>
-        /// lblUnreadCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUnreadCount;
-
-        /// <summary>
-        /// tabBadge control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tabBadge;
-
-        /// <summary>
-        /// lblTabUnreadCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTabUnreadCount;
-
-        /// <summary>
         /// gvSkills control.
         /// </summary>
         /// <remarks>
@@ -130,24 +94,6 @@ namespace Portfolio.Admin
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvProjects;
-
-        /// <summary>
-        /// btnShowAll control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowAll;
-
-        /// <summary>
-        /// btnShowUnread control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShowUnread;
 
         /// <summary>
         /// gvMessages control.

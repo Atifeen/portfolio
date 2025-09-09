@@ -1,6 +1,4 @@
-﻿
-
-<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Portfolio.Default" %>
+﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="Portfolio.Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -11,7 +9,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">Hi, I'm <span class="highlight">Your Name</span></h1>
+                    <h1 class="hero-title">Hi, I'm <span class="highlight">Md Jubair Husain</span></h1>
                     <h2 class="hero-subtitle">Full Stack Web Developer</h2>
                     <p class="hero-description">
                         Computer Science student specializing in ASP.NET development and database-driven applications. 
@@ -94,10 +92,27 @@
             <div class="section-header">
                 <h2 class="section-title">My Skills</h2>
             </div>
-           
+            <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>Languages</h3>
+                    <h3>Languages & Core Technologies</h3>
                     <asp:Repeater ID="rptLanguageSkills" runat="server">
+                        <ItemTemplate>
+                            <div class="skill-item">
+                                <div class="skill-header">
+                                    <span class="skill-name"><%# Eval("SkillName") %></span>
+                                    <span class="skill-percentage"><%# GetProficiencyPercentage(Eval("Proficiency").ToString()) %>%</span>
+                                </div>
+                                <div class="skill-progress">
+                                    <div class="progress-fill" data-level="<%# GetProficiencyPercentage(Eval("Proficiency").ToString()) %>"></div>
+                                </div>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Frameworks & Libraries</h3>
+                    <asp:Repeater ID="rptFrameworkSkills" runat="server">
                         <ItemTemplate>
                             <div class="skill-item">
                                 <div class="skill-header">
@@ -163,13 +178,13 @@
                     <h3>GET IN TOUCH</h3>
                     <p>745 Kushtia-Meherpur Hwy</p>
                     <p>Mirpur-7030, Kushtia, Bangladesh</p>
-                    <p>+880 1XXX-XXXXXX</p>
-                    <p><a href="mailto:your.email@gmail.com">your.email@gmail.com</a></p>
+                    <p>+880 1302-460249</p>
+                    <p><a href="mailto:atifeenz@gmail.com">atifeenz@gmail.com</a></p>
                     
                     <div class="social-links">
-                        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-                        <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-                        <a href="https://facebook.com/yourprofile" target="_blank">Facebook</a>
+                        <a href="#" target="_blank">LinkedIn</a>
+                        <a href="https://github.com/atifeen" target="_blank">GitHub</a>
+                        <a href="https://facebook.com/atifeen" target="_blank">Facebook</a>
                     </div>
                 </div>
                 <div class="contact-form">

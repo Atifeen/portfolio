@@ -42,12 +42,7 @@
                     <div class="stat-label">Total Projects</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">
-                        <asp:Label ID="lblMessagesCount" runat="server">0</asp:Label>
-                        <span class="unread-badge" id="unreadBadge" runat="server" visible="false">
-                            <asp:Label ID="lblUnreadCount" runat="server"></asp:Label>
-                        </span>
-                    </div>
+                    <div class="stat-number"><asp:Label ID="lblMessagesCount" runat="server">0</asp:Label></div>
                     <div class="stat-label">Contact Messages</div>
                 </div>
             </div>
@@ -56,15 +51,11 @@
             <div class="nav-tabs">
                 <button type="button" class="nav-tab active" onclick="showSection('skills', this)">Manage Skills</button>
                 <button type="button" class="nav-tab" onclick="showSection('projects', this)">Manage Projects</button>
-                <button type="button" class="nav-tab" onclick="showSection('messages', this)">
-                    Contact Messages
-                    <span class="tab-badge" id="tabBadge" runat="server" visible="false">
-                        <asp:Label ID="lblTabUnreadCount" runat="server"></asp:Label>
-                    </span>
-                </button>
+                <button type="button" class="nav-tab" onclick="showSection('messages', this)">Contact Messages</button>
             </div>
 
             <!-- Skills Section -->
+             <!-- asp:BoundField DataField="Description" HeaderText="Description" -->
             <div id="skills-section" class="content-section active">
                 <div class="section-header">
                     <h2>Skills Management</h2>
@@ -76,7 +67,7 @@
                     <Columns>
                         <asp:BoundField DataField="SkillName" HeaderText="Skill Name" />
                         <asp:BoundField DataField="Proficiency" HeaderText="Proficiency" />
-                        <asp:BoundField DataField="Description" HeaderText="Description" />
+                       
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
                                 <div class="action-container" data-id='<%# Eval("id") %>' 
@@ -137,24 +128,11 @@
             <div id="messages-section" class="content-section">
                 <div class="section-header">
                     <h2>Contact Messages</h2>
-                    <div class="message-filters">
-                        <asp:Button ID="btnShowAll" runat="server" CssClass="filter-btn active" 
-                            Text="All Messages" OnClick="btnShowAll_Click" />
-                        <asp:Button ID="btnShowUnread" runat="server" CssClass="filter-btn" 
-                            Text="Unread Only" OnClick="btnShowUnread_Click" />
-                    </div>
                 </div>
                 
                 <asp:GridView ID="gvMessages" runat="server" CssClass="data-table" AutoGenerateColumns="false" 
                     OnRowCommand="gvMessages_RowCommand" DataKeyNames="Id">
                     <Columns>
-                        <asp:TemplateField HeaderText="Status">
-                            <ItemTemplate>
-                                <span class='<%# Convert.ToBoolean(Eval("IsRead")) ? "status-read" : "status-unread" %>'>
-                                    <%# Convert.ToBoolean(Eval("IsRead")) ? "Read" : "New" %>
-                                </span>
-                            </ItemTemplate>
-                        </asp:TemplateField>
                         <asp:BoundField DataField="Name" HeaderText="From" />
                         <asp:BoundField DataField="Subject" HeaderText="Subject" />
                         <asp:BoundField DataField="CreatedDate" HeaderText="Date" DataFormatString="{0:MMM dd, yyyy HH:mm}" />
@@ -165,8 +143,7 @@
                                      data-email='<%# Server.HtmlEncode(Eval("Email").ToString()) %>'
                                      data-subject='<%# Server.HtmlEncode(Eval("Subject").ToString()) %>'
                                      data-message='<%# Server.HtmlEncode(Eval("Message").ToString()) %>'
-                                     data-date='<%# Eval("CreatedDate", "{0:MMM dd, yyyy HH:mm}") %>'
-                                     data-isread='<%# Eval("IsRead") %>'>
+                                     data-date='<%# Eval("CreatedDate", "{0:MMM dd, yyyy HH:mm}") %>'>
                                     <button type="button" class="action-btn view-btn" 
                                         onclick="viewMessage(this)">View</button>
                                     <asp:LinkButton runat="server" CssClass="action-btn delete-btn" 
@@ -197,10 +174,7 @@
                     <div class="form-display" id="viewProficiency"></div>
                 </div>
                 
-                <div class="form-group">
-                    <label>Description</label>
-                    <div class="form-display" id="viewSkillDescription"></div>
-                </div>
+               
                 
                 <div class="form-group">
                     <button type="button" class="action-btn" onclick="closeModal('viewSkillModal')">Close</button>
@@ -225,10 +199,14 @@
                     <label>Proficiency Level</label>
                     <asp:DropDownList ID="ddlProficiency" runat="server" CssClass="form-control">
                         <asp:ListItem Value="">Select Proficiency</asp:ListItem>
-                        <asp:ListItem Value="Beginner">Beginner</asp:ListItem>
-                        <asp:ListItem Value="Intermediate">Intermediate</asp:ListItem>
-                        <asp:ListItem Value="Advanced">Advanced</asp:ListItem>
-                        <asp:ListItem Value="Expert">Expert</asp:ListItem>
+                        <asp:ListItem Value="30">30 %</asp:ListItem>
+                        <asp:ListItem Value="40">40 %</asp:ListItem>
+                        <asp:ListItem Value="50">50 %</asp:ListItem>
+                        <asp:ListItem Value="60">60 %</asp:ListItem>
+                        <asp:ListItem Value="70">70 %</asp:ListItem>
+                        <asp:ListItem Value="80">80 %</asp:ListItem>
+                        <asp:ListItem Value="90">90 %</asp:ListItem>
+
                     </asp:DropDownList>
                 </div>
                 
@@ -383,4 +361,3 @@
     <script src="../Scripts/dashboard.js"></script>
 </body>
 </html>
-

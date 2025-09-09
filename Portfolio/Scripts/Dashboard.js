@@ -151,7 +151,7 @@ function viewSkill(button) {
     // Populate view modal
     document.getElementById('viewSkillName').textContent = skillName;
     document.getElementById('viewProficiency').textContent = proficiency;
-    document.getElementById('viewSkillDescription').textContent = description;
+    //document.getElementById('viewSkillDescription').textContent = description;
 
     // Show view modal
     document.getElementById('viewSkillModal').style.display = 'block';
@@ -337,3 +337,10 @@ window.onclick = function (event) {
         event.target.style.display = 'none';
     }
 }
+
+document.addEventListener('keydown', (event) => {
+    if (event.altKey && event.key === 'a') {
+        event.preventDefault();
+        window.location.href = 'https://localhost:44362/Default';
+    }
+});
