@@ -9,6 +9,7 @@
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
+    <NameOfLastUsedPublishProfile>D:\Portfolio\Portfolio\Properties\PublishProfiles\FTPProfile1.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

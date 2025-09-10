@@ -102,7 +102,6 @@
     <Content Include=".gitignore" />
     <Content Include="Admin\Dashboard.aspx" />
     <Content Include="Admin\Login.aspx" />
-    <Content Include="Contact.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -132,13 +131,6 @@
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Contact.aspx.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Contact.aspx.designer.cs">
-      <DependentUpon>Contact.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -151,24 +143,12 @@
     </Compile>
     <Compile Include="Helpers\DBHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripts\portfolio.js.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Scripts\portfolio.js.designer.cs">
-      <DependentUpon>portfolio.js.cs</DependentUpon>
-    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="Styles\Portfolio.css.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Styles\Portfolio.css.designer.cs">
-      <DependentUpon>Portfolio.css.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
